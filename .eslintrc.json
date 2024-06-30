@@ -3,6 +3,12 @@
         "@rocketseat/eslint-config/node",
         "plugin:vitest-globals/recommended"
     ],
+    "prettier/prettier": [
+        "error",
+        {
+            "endOfLine": "auto"
+        }
+    ],
     "rules": {
         "no-useless-constructor": "off"
     },
