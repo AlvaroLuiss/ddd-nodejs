@@ -1,13 +1,13 @@
 import { expect } from 'vitest'
 import { CreateQuestionUsecase } from './create-question'
-import { InMemoryQuestionRepository } from 'test/repositories/in-memory-questions-repository'
+import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
 
-let inMemoryQuestionsRepository: InMemoryQuestionRepository
+let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let sut: CreateQuestionUsecase
 
 describe('Create Question', () => {
   beforeEach(() => {
-    inMemoryQuestionsRepository = new InMemoryQuestionRepository
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository
     sut = new CreateQuestionUsecase(inMemoryQuestionsRepository)
   })
 

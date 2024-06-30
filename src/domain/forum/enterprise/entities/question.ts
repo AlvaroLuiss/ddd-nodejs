@@ -1,7 +1,7 @@
 import { Slug } from './value-objects/slug'
 import { Entity } from '@/core/entities/entity'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { Optional } from '@/core/entities/types/optional'
+import { Optional } from '../../../../core/entities/types/optional'
 import dayjs from 'dayjs'
 
 interface QuestionProps {
@@ -11,12 +11,12 @@ interface QuestionProps {
   content: string
   slug: Slug
   createdAt: Date
-  updateAt?: Date
+  updatedAt?: Date
 }
 
 export class Question extends Entity<QuestionProps> {
   get authorId() {
-    return this.props.content
+    return this.props.authorId
   }
 
   get bestAnswerId() {
@@ -24,7 +24,7 @@ export class Question extends Entity<QuestionProps> {
   }
 
   get title() {
-    return this.props.content
+    return this.props.title
   }
 
   get content() {
@@ -32,15 +32,15 @@ export class Question extends Entity<QuestionProps> {
   }
 
   get slug() {
-    return this.props.content
+    return this.props.slug
   }
 
   get createdAt() {
-    return this.props.content
+    return this.props.createdAt
   }
 
-  get updateAt() {
-    return this.props.content
+  get updatedAt() {
+    return this.props.updatedAt
   }
 
   get isNew(): boolean {
@@ -52,12 +52,13 @@ export class Question extends Entity<QuestionProps> {
   }
 
   private touch() {
-    this.props.updateAt = new Date()
+    this.props.updatedAt = new Date()
   }
 
   set title(title: string) {
     this.props.title = title
     this.props.slug = Slug.createFromText(title)
+
     this.touch()
   }
 
