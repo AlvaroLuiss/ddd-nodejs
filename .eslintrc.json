@@ -6,6 +6,13 @@
   "rules": {
     "no-useless-constructor": "off"
   },
+  "prettier/prettier": [
+    "error",
+    {
+      "endOfLine": "auto",
+    }
+  ],
+
   "env": {
     "vitest-globals/env": true
   }
