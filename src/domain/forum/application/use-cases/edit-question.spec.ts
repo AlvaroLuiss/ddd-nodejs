@@ -1,6 +1,6 @@
+import { EditQuestionUseCase } from './edit-question'
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
 import { makeQuestion } from 'test/factories/make-question'
-import { EditQuestionUseCase } from './edit-question'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
@@ -13,7 +13,12 @@ describe('Edit Question', () => {
   })
 
   it('should be able to edit a question', async () => {
-    const newQuestion = makeQuestion({authorId: new UniqueEntityID('author-1')}, new UniqueEntityID('question-1'))
+    const newQuestion = makeQuestion(
+      {
+        authorId: new UniqueEntityID('author-1'),
+      },
+      new UniqueEntityID('question-1'),
+    )
 
     await inMemoryQuestionsRepository.create(newQuestion)
 
@@ -21,18 +26,22 @@ describe('Edit Question', () => {
       questionId: newQuestion.id.toValue(),
       authorId: 'author-1',
       title: 'Pergunta teste',
-      content: 'Conteudo teste',
+      content: 'Conteúdo teste',
     })
 
     expect(inMemoryQuestionsRepository.items[0]).toMatchObject({
-        title: 'Pergunta teste',
-        content: 'Conteudo teste'
+      title: 'Pergunta teste',
+      content: 'Conteúdo teste',
     })
   })
 
-
-  it('should be able to edit a question from another user', async () => {
-    const newQuestion = makeQuestion({authorId: new UniqueEntityID('author-1')}, new UniqueEntityID('question-1'))
+  it('should not be able to edit a question from another user', async () => {
+    const newQuestion = makeQuestion(
+      {
+        authorId: new UniqueEntityID('author-1'),
+      },
+      new UniqueEntityID('question-1'),
+    )
 
     await inMemoryQuestionsRepository.create(newQuestion)
 
@@ -41,7 +50,7 @@ describe('Edit Question', () => {
         questionId: newQuestion.id.toValue(),
         authorId: 'author-2',
         title: 'Pergunta teste',
-        content: 'Conteudo teste',
+        content: 'Conteúdo teste',
       })
     }).rejects.toBeInstanceOf(Error)
   })

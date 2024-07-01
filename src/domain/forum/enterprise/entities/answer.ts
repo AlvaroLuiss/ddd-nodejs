@@ -1,34 +1,34 @@
 import { Entity } from '@/core/entities/entity'
-import { Optional } from '@/core/entities/types/optional'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Optional } from '@/core/types/optional'
 
 export interface AnswerProps {
-  content: string
   authorId: UniqueEntityID
   questionId: UniqueEntityID
+  content: string
   createdAt: Date
-  updateAt?: Date
+  updatedAt?: Date
 }
 
 export class Answer extends Entity<AnswerProps> {
+  get authorId() {
+    return this.props.authorId
+  }
+
+  get questionId() {
+    return this.props.questionId
+  }
+
   get content() {
     return this.props.content
   }
 
-  get authorId() {
-    return this.props.content
-  }
-
-  get questionId() {
-    return this.props.content
-  }
-
   get createdAt() {
-    return this.props.content
+    return this.props.createdAt
   }
 
-  get updateAt() {
-    return this.props.content
+  get updatedAt() {
+    return this.props.updatedAt
   }
 
   get excerpt() {
@@ -36,7 +36,7 @@ export class Answer extends Entity<AnswerProps> {
   }
 
   private touch() {
-    this.props.updateAt = new Date()
+    this.props.updatedAt = new Date()
   }
 
   set content(content: string) {
