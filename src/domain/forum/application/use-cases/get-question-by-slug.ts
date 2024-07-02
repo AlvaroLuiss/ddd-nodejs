@@ -1,6 +1,6 @@
 import { Question } from '@/domain/forum/enterprise/entities/question'
 import { QuestionsRepository } from '../repositories/questions-repository'
-import { Either, right } from '@/core/either'
+import { Either, left, right } from '@/core/either'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface GetQuestionBySlugUseCaseRequest {
@@ -26,4 +26,5 @@ export class GetQuestionBySlugUseCase {
     return right({
       question,
     })
+  }
 }
