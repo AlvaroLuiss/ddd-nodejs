@@ -1,20 +1,18 @@
-import { faker } from '@faker-js/faker'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { QuestionComment, QuestionCommentProps } from '@/domain/forum/enterprise/entities/question-comment'
+import { QuestionAttachment, QuestionAttachmentProps } from '@/domain/forum/enterprise/entities/question-attachment'
 
-export function makeQuestionComment(
-  override: Partial<QuestionCommentProps> = {},
+export function makeQuestionAttachment(
+  override: Partial<QuestionAttachmentProps> = {},
   id?: UniqueEntityID,
 ) {
-  const questionComment = QuestionComment.create(
+  const questionAttachment = QuestionAttachment.create(
     {
-      authorId: new UniqueEntityID(),
       questionId: new UniqueEntityID(),
-      content: faker.lorem.text(),
+      attachmentId: new UniqueEntityID(),
       ...override,
     },
     id,
   )
 
-  return questionComment
+  return questionAttachment
 }
